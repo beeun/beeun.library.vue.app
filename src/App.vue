@@ -1,9 +1,17 @@
 <template>
-  <SlideBack id="app">
-  	<keep-alive>
-      <router-view class="appView"></router-view>
-    </keep-alive>
-  </SlideBack>
+  <div id="app">
+  	<SlideBack>
+	  	<keep-alive>
+	      <router-view class="appView"></router-view>
+	    </keep-alive>
+	  </SlideBack>
+	  <van-tabbar v-model="active">
+		  <van-tabbar-item icon="home-o">首页</van-tabbar-item>
+		  <van-tabbar-item icon="apps-o">分类</van-tabbar-item>
+		  <van-tabbar-item icon="shopping-cart-o" info="5">购物车</van-tabbar-item>
+		  <van-tabbar-item icon="manager-o">我的</van-tabbar-item>
+		</van-tabbar>
+  </div>
 </template>
 
 <script>
@@ -12,6 +20,11 @@ export default {
   name: 'App',
   components: {
   	SlideBack
+  },
+  data() {
+  	return {
+  		active: 0
+  	}
   }
 }
 </script>

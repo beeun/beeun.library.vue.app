@@ -1,5 +1,6 @@
 <template>
 	<div class="slide-back-wrap" v-on:touchstart="bodyTouchStart" v-on:touchmove="bodyTouchMove" v-on:touchend="bodyTouchEnd">
+		<div style="position: absolute; left: 0; top: 0; width: 50px; height: 100%; background-color: #efefef; z-index: 2; opacity: 0.3;"></div>
 		<transition :name="direction">
 			<slot></slot>
 		</transition>
@@ -18,18 +19,17 @@ export default {
 			// direction 页面切换的过渡动画，配合transition组件使用
 	        direction: "slide-left",
 	        // touchLeft 划动起点界限，起点在靠近屏幕左侧时才有效
-	        touchLeft: swidth*2/5,
+	        touchLeft: 50, // swidth * 2 / 5,
 	        // touchStartPoint 记录起始点X坐标
 	        touchStartPoint: 0,
 	        // distance 记录划动的距离
 	        distance: 0,
 	        // 根据当前路由的配置来判断该路由是否可以回退，通过配置router的meta属性，unreturn = true表示禁止返回
-	        unreturn: false,
-	        historyName: ''
+	        unreturn: false
 		}
 	},
 	mounted() {
-		
+		console.log(this.touchLeft, swidth)
 	},
 	watch: {
         // 监听路有变化，决定页面过渡动画
